@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useHttp } from '../../hooks/http.hook'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -40,8 +40,8 @@ const HeroesAddForm = () => {
     }
 
     return arr.map(({ name }) => {
-      if (name === 'all') return
-
+      if (name === '') return
+      
       return <option key={name}>{name}</option>
     })
   }

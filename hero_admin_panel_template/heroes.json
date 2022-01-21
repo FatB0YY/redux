@@ -1,5 +1,12 @@
 {
-  "heroes": [],
+  "heroes": [
+    {
+      "id": "3454d340-12e5-4dd3-a96d-0f0dad4ef645",
+      "name": "Иван",
+      "description": "Анигилировать",
+      "element": "fire"
+    }
+  ],
   "filters": [
     {
       "name": "all",

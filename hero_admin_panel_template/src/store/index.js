@@ -1,10 +1,44 @@
-import { createStore, combineReducers } from 'redux'
-import heroesReducer from '../reducers/heroes'
-import filtersReducer from '../reducers/filters'
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import ReduxThunk from 'redux-thunk'
+import heroes from '../reducers/heroes'
+import filters from '../reducers/filters'
+
+const stringMiddleware =
+  ({ dispatch, getState }) =>
+  (next) =>
+  (action) => {
+    if (typeof action === 'string') {
+      return next({
+        type: action,
+      })
+    }
+    return next(action)
+  }
+
+// const enhancer =
+//   (createStore) =>
+//   (...args) => {
+//     const store = createStore(...args)
+
+//     // идет шаблонный код из решений
+//     const oldDispatch = store.dispatch
+//     store.dispatch = (action) => {
+//       if (typeof action === 'string') {
+//         return oldDispatch({
+//           type: action,
+//         })
+//       }
+//       return oldDispatch(action)
+//     }
+//     return store
+//   }
 
 const store = createStore(
-  combineReducers({ heroes: heroesReducer, filters: filtersReducer }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  combineReducers({ filters, heroes }),
+  compose(
+    applyMiddleware(ReduxThunk, stringMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 )
 
 export default store

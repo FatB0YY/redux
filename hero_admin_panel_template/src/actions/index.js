@@ -1,3 +1,11 @@
+// запрос
+export const fetchHeroes = (request) => (dispatch) => {
+  dispatch(heroesFetching());
+  request("http://localhost:3001/heroes")
+      .then(data => dispatch(heroesFetched(data)))
+      .catch(() => dispatch(heroesFetchingError()))
+}
+
 // загрузка героев
 export const heroesFetching = () => {
   return {
@@ -54,9 +62,20 @@ export const heroCreated = (hero) => {
 }
 
 // управление фильтрами
+
+// export const activeFilterChanged = (filter) => (dispatch) => {
+//   setTimeout(() => {
+//     dispatch({
+//       type: 'ACTIVE_FILTER_CHANGED',
+//       payload: filter,
+//     })
+//   }, 100)
+// }
+
 export const activeFilterChanged = (filter) => {
   return {
-    type: 'ACTIVE_FILTER_CHANGED',
-    payload: filter,
+      type: 'ACTIVE_FILTER_CHANGED',
+      payload: filter
   }
 }
+
