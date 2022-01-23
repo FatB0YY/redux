@@ -1,9 +1,9 @@
 import { useHttp } from '../../hooks/http.hook'
 import { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createSelector } from 'reselect'
+import { createSelector } from '@reduxjs/toolkit'
 
-import { fetchHeroes, heroDeleted } from '../../actions'
+import { heroDeleted, fetchHeroes } from './heroesSlice'
 
 import HeroesListItem from '../heroesListItem/HeroesListItem'
 import Spinner from '../spinner/Spinner'
@@ -49,7 +49,7 @@ const HeroesList = (props) => {
     // request('http://localhost:3001/heroes')
     //   .then((data) => dispatch(heroesFetched(data)))
     //   .catch(() => dispatch(heroesFetchingError()))
-    dispatch(fetchHeroes(request));
+    dispatch(fetchHeroes())
   }, [])
 
   // Функция берет id и по нему удаляет ненужного персонажа из store

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useHttp } from '../../hooks/http.hook'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { heroCreated } from '../../actions'
+import { heroCreated } from '../heroesList/heroesSlice'
 
 import Spinner from '../spinner/Spinner'
 

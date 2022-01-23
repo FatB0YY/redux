@@ -10,7 +10,8 @@ import {
   filtersFetched,
   filtersFetchingError,
   activeFilterChanged,
-} from '../../actions'
+} from './filtersSlice'
+
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
